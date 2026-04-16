@@ -1,18 +1,16 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Ścieżka do pliku (dwa foldery wyżej)
 file_path = '../../energydata_complete.csv'
 
 try:
-    # Wczytanie danych
+ 
     df = pd.read_csv(file_path)
     
-    # Wybieramy pierwsze dwie kolumny numeryczne do testów (pomijając np. datę, jeśli jest pierwsza)
     col1 = df.columns[1]
     col2 = df.columns[2]
 
-    # Wykres 1: Wykres liniowy (pierwsze 200 pomiarów)
+    # Wykres liniowy (pierwsze 200 pomiarów)
     plt.figure(figsize=(10, 5))
     plt.plot(df[col1].head(200), label=col1, color='blue')
     plt.title(f'Wykres liniowy: {col1}')
@@ -20,19 +18,19 @@ try:
     plt.ylabel('Wartość')
     plt.legend()
     plt.grid(True)
-    plt.savefig('wykres_liniowy.png') # Zapisuje wykres do pliku
+    plt.savefig('wykres_liniowy.png')
     plt.close()
 
-    # Wykres 2: Histogram (dystrybucja danych)
+    # Histogram
     plt.figure(figsize=(10, 5))
     plt.hist(df[col2].dropna(), bins=30, color='orange', edgecolor='black')
     plt.title(f'Histogram dla: {col2}')
     plt.xlabel('Wartość')
     plt.ylabel('Liczba wystąpień')
-    plt.savefig('histogram.png') # Zapisuje wykres do pliku
+    plt.savefig('histogram.png') 
     plt.close()
 
-    print("Gotowe! Wykresy (wykres_liniowy.png i histogram.png) zostały wygenerowane.")
+    print("Wykresy (wykres_liniowy.png i histogram.png) zostały wygenerowane.")
 
 except FileNotFoundError:
     print(f"Błąd: Nie znaleziono pliku {file_path}. Sprawdź, czy CSV jest w głównym folderze.")
