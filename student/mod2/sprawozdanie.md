@@ -1,3 +1,8 @@
+---
+header-includes:
+  - \usepackage{graphicx}
+---
+
 # Sprawozdanie: Moduł 2 - Zaawansowana analiza danych w systemie IoT
 **Autor:** Jakub Bandura
 
@@ -22,58 +27,66 @@ Analiza została przedstawiona za pomocą oddzielnych wykresów dla każdej grup
 Poniżej znajdują się wykresy pokazujące dobowe średnie w podziale na grupy o tej samej jednostce:
 
 #### Temperatura
-<div align="center">
-<img src="agregacja_dobowa_degC.png" />
-</div>
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{agregacja_dobowa_degC.png}
+\end{center}
 
 Na tym wykresie pokazano dobowe średnie temperatur z czujników wewnętrznych i zewnętrznych. Pozwala to porównać stabilność i sezonowe zmiany temperatur w różnych strefach domu.
 
 #### Wilgotność
-<div align="center">
-<img src="agregacja_dobowa_pct.png" />
-</div>
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{agregacja_dobowa_pct.png}
+\end{center}
 
 Wykres wilgotności pokazuje zmiany dobowych średnich wartości czujników wilgotności powietrza. Jest to istotne z punktu widzenia komfortu i efektywności systemów grzewczych oraz klimatyzacji.
 
 #### Zużycie energii
-<div align="center">
-<img src="agregacja_dobowa_Wh.png" />
-</div>
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{agregacja_dobowa_Wh.png}
+\end{center}
 
 Ten wykres obrazuje dobowe średnie zużycie energii przez urządzenia i oświetlenie. Umożliwia analizę trendów energetycznych oraz identyfikację okresów o zwiększonym zapotrzebowaniu.
 
 #### Prędkość wiatru
-<div align="center">
-<img src="agregacja_dobowa_m_s.png" />
-</div>
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{agregacja_dobowa_m_s.png}
+\end{center}
 
 Wykres przedstawia średnie dobowe prędkości wiatru z zewnętrznych pomiarów. Jest przydatny do oceny wpływu warunków pogodowych na instalację domową.
 
 #### Widoczność
-<div align="center">
-<img src="agregacja_dobowa_km.png" />
-</div>
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{agregacja_dobowa_km.png}
+\end{center}
 
 Widoczność mierzona w kilometrach obrazuje warunki atmosferyczne zewnętrzne i może być użyta do oceny jakości pomiarów oraz ich wpływu na zachowanie systemu.
 
 #### Ciśnienie atmosferyczne
-<div align="center">
-<img src="agregacja_dobowa_mm_Hg.png" />
-</div>
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{agregacja_dobowa_mm_Hg.png}
+\end{center}
 
 Wykres ciśnienia atmosferycznego pokazuje zmiany dobowe i jest ważny przy analizie powiązań pogodowych z zużyciem energii i temperaturą.
 
 ### Histogram zużycia energii AGD
-<div align="center">
-<img src="histogram_zuzycie_agd.png" />
-</div>
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{histogram_zuzycie_agd.png}
+\end{center}
 
 Histogram obrazuje rozkład dobowego zużycia energii przez urządzenia AGD. Taki wykres jest przydatny do identyfikacji wartości typowych, odchyleń oraz dni, w których zużycie było nietypowo wysokie.
 
 ### Mapa korelacji
-<div align="center">
-<img src="heatmap_korelacji.png" />
-</div>
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{heatmap_korelacji.png}
+\end{center}
 
 Mapa korelacji prezentuje powiązania między wszystkimi badanymi zmiennymi w formie macierzy. Dzięki polskim etykietom łatwiej wskazać silne zależności, np. między temperaturą zewnętrzną, wilgotnością i zużyciem energii.
 
