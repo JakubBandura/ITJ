@@ -2,30 +2,49 @@
 **Autor:** Jakub Bandura
 
 ## Cel zadania
-Celem ćwiczenia było wykorzystanie języka Python oraz bibliotek `pandas` i `matplotlib` do zaawansowanego przetwarzania, czyszczenia i analizy wzorców w dużym zbiorze danych pochodzącym z domowego systemu czujników IoT (`energydata_complete.csv`).
+Celem ćwiczenia było przygotowanie inżynierskiej analizy danych z systemu czujników IoT. Skrypt miał przetworzyć surowy zapis z pliku `energydata_complete.csv`, zidentyfikować sensowne miary oraz zwizualizować je w sposób ułatwiający interpretację i porównanie.
 
-## Proces przetwarzania danych (Data Preprocessing)
-Zamiast rysować surowe dane, zaimplementowano kroki czyszczenia i agregacji:
-1. Przekonwertowano kolumnę tekstową z datą na odpowiedni typ `datetime`, usuwając przy tym błędne wiersze.
-2. Odfiltrowano wyłącznie kolumny numeryczne.
-3. Wykorzystano funkcję `resample('D').mean()` do zagregowania tysięcy pomiarów do postaci uśrednionych wartości dobowych, co znacząco zredukowało szum informacyjny.
+## Przetwarzanie danych
+W skrypcie wykonano następujące operacje:
+1. Wczytanie pliku CSV i konwersję kolumny `date` do formatu `datetime`.
+2. Odfiltrowanie tylko kolumn numerycznych, aby skoncentrować analizę na pomiarach fizycznych i energetycznych.
+3. Agregację do wartości dobowych za pomocą `resample('D').mean()`, co redukuje szum krótkookresowy i uwydatnia długoterminowe trendy.
+4. Wyliczenie macierzy korelacji dla średnich dobowych, co pozwala ocenić powiązania między parametrami.
+5. Zapis wygenerowanych danych do plików:
+   - `daily_mean.csv`
+   - `hourly_mean.csv`
+   - `correlation_daily_mean.csv`
 
-## Analiza wyników i wizualizacja
+## Wykresy i ich znaczenie
+Analiza została przedstawiona za pomocą oddzielnych wykresów dla każdej grupy zmiennych o tej samej jednostce. Taka organizacja jest inżyniersko uzasadniona, ponieważ porównywanie wartości o różnych jednostkach na jednym wykresie prowadzi do zniekształconych interpretacji.
 
-### 1. Trend i sezonowość (Wykres Liniowy)
-Na poniższym wykresie zestawiono zagregowane dobowe średnie dla zużycia energii (urządzenia, światło) oraz warunków zewnętrznych (temperatura i wilgotność). Agregacja pozwoliła zaobserwować rzeczywiste, długoterminowe trendy zachodzące w badanym okresie.
+### Wykresy agregacji dobowej według jednostek
+Wygenerowano zestawy wykresów, które pokazują dobowe średnie dla grup parametrów posiadających wspólną jednostkę:
+- `agregacja_dobowa_degC.png` — wszystkie temperatury (T1–T9, T_out, Tdewpoint)
+- `agregacja_dobowa_pct.png` — wszystkie wilgotności (RH_1–RH_9, RH_out)
+- `agregacja_dobowa_Wh.png` — zużycie energii (`Appliances`, `lights`)
+- `agregacja_dobowa_m_s.png` — prędkość wiatru (`Windspeed`)
+- `agregacja_dobowa_km.png` — widoczność (`Visibility`)
+- `agregacja_dobowa_mm_Hg.png` — ciśnienie atmosferyczne (`Press_mm_hg`)
 
-![Agregacja Dobowa](agregacja_dobowa.png)
+Każdy z tych wykresów pokazuje, jak zachowuje się dana klasa pomiarów w czasie. Dzięki temu można np. porównać wzorce temperatur wewnętrznych i zewnętrznych lub obserwować sezonowość wilgotności.
 
-### 2. Rozkład zużycia energii (Histogram)
-Histogram prezentuje dystrybucję dobowego zapotrzebowania na energię dla głównych urządzeń (Appliances). Pozwala to łatwo zidentyfikować, jaki poziom zużycia występuje najczęściej (wartości typowe) oraz zidentyfikować ewentualne wartości skrajne (dni o nietypowo wysokim poborze).
+### Histogram zużycia energii AGD
+- `histogram_zuzycie_agd.png`
 
-![Histogram Zużycia Prądu](histogram_appliances.png)
+Histogram obrazuje, jak rozkłada się dobowe zużycie energii przez urządzenia AGD. Taki wykres jest przydatny do identyfikacji wartości typowych, odchyleń oraz potencjalnych dni o nadmiernym poborze prądu.
 
-### 3. Poszukiwanie zależności (Mapa Korelacji)
-Aby zbadać liniowe relacje między wszystkimi czujnikami w inteligentnym domu, wygenerowano mapę korelacji (Heatmap). Intensywność kolorów pozwala błyskawicznie wychwycić parametry, które są ze sobą silnie powiązane (np. warunki pogodowe a zużycie prądu).
+### Mapa korelacji
+- `heatmap_korelacji.png`
 
-![Mapa Korelacji](heatmap_korelacji.png)
+Mapa korelacji prezentuje powiązania między wszystkimi badanymi zmiennymi w formie macierzy. Dzięki spójnym, polskim etykietom łatwiej wskazać silne zależności, np. między temperaturą zewnętrzną, wilgotnością i zużyciem energii.
+
+## Uzasadnienie inżynierskie
+Takie podejście jest typowe w analizie systemów IoT:
+- agregacja dobowych średnich upraszcza wielkoskalową analizę i pozwala skupić się na istotnych trendach,
+- grupowanie po jednostkach zapobiega błędnym wnioskom wynikającym z mieszania różnych skal,
+- mapa korelacji umożliwia szybkie wykrycie zależności, które mogą być podstawą do dalszych modeli predykcyjnych,
+- zapis wyników do plików `.csv` zachowuje dane w formacie gotowym na kolejne etapy analizy.
 
 ## Wnioski
-Zastosowanie biblioteki *pandas* do resamplingu danych oraz filtrowania typów okazało się kluczowe przy pracy z rzeczywistymi logami IoT. Odpowiednie przetworzenie danych przed ich narysowaniem (narzędziem *matplotlib*) nie tylko poprawia czytelność wykresów, ale pozwala wyciągać konkretne wnioski biznesowe i fizyczne, niemożliwe do zauważenia w surowym gąszczu logów. Dołączone pliki `.csv` stanowią świetną bazę pod ewentualne trenowanie modeli uczenia maszynowego.
+Skrypt przenosi analizę z poziomu surowych logów do postaci czytelnych wykresów i zbiorów danych. Przetworzenie czasowe oraz podział na grupy jednostek daje praktyczne narzędzie do monitorowania zachowań systemu oraz do późniejszego wykorzystania w modelowaniu predykcyjnym lub optymalizacji zużycia energii.

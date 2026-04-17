@@ -81,6 +81,16 @@ try:
         if col in daily_mean.columns:
             unit_groups.setdefault(unit, []).append(col)
 
+    title_by_unit = {
+        '°C': 'Średnie dobowe temperatury',
+        '%': 'Średnie dobowe wilgotności',
+        'Wh': 'Średnie dobowe zużycia energii',
+        'm/s': 'Średnie dobowe prędkości wiatru',
+        'km': 'Średnie dobowe widoczności',
+        'mm Hg': 'Średnie dobowe ciśnień atmosferycznego',
+        'brak jednostki': 'Średnie dobowe wartości bez jednostki'
+    }
+
     filenames = []
     for unit, cols in sorted(unit_groups.items()):
         if not cols:
@@ -89,10 +99,10 @@ try:
         for col in cols:
             label = translations.get(col, col)
             plt.plot(daily_mean.index, daily_mean[col], label=label)
-        unit_label = unit if unit != 'brak jednostki' else ''
-        plt.title(f'Średnie dobowe dla jednostki: {unit_label}'.strip())
+        title = title_by_unit.get(unit, f'Średnie dobowe dla jednostki: {unit}')
+        plt.title(title)
         plt.xlabel('Data')
-        plt.ylabel(f'Średnia wartość{f" ({unit})" if unit_label else ""}')
+        plt.ylabel(f'Średnia wartość{f" ({unit})" if unit != "brak jednostki" else ""}')
         plt.legend()
         plt.grid(True)
         plt.tight_layout()
