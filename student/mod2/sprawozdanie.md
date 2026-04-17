@@ -22,42 +22,58 @@ Analiza została przedstawiona za pomocą oddzielnych wykresów dla każdej grup
 Poniżej znajdują się wykresy pokazujące dobowe średnie w podziale na grupy o tej samej jednostce:
 
 #### Temperatura
-![](agregacja_dobowa_degC.png)
+<div align="center">
+<img src="agregacja_dobowa_degC.png" />
+</div>
 
 Na tym wykresie pokazano dobowe średnie temperatur z czujników wewnętrznych i zewnętrznych. Pozwala to porównać stabilność i sezonowe zmiany temperatur w różnych strefach domu.
 
 #### Wilgotność
-![](agregacja_dobowa_pct.png)
+<div align="center">
+<img src="agregacja_dobowa_pct.png" />
+</div>
 
 Wykres wilgotności pokazuje zmiany dobowych średnich wartości czujników wilgotności powietrza. Jest to istotne z punktu widzenia komfortu i efektywności systemów grzewczych oraz klimatyzacji.
 
 #### Zużycie energii
-![](agregacja_dobowa_Wh.png)
+<div align="center">
+<img src="agregacja_dobowa_Wh.png" />
+</div>
 
 Ten wykres obrazuje dobowe średnie zużycie energii przez urządzenia i oświetlenie. Umożliwia analizę trendów energetycznych oraz identyfikację okresów o zwiększonym zapotrzebowaniu.
 
 #### Prędkość wiatru
-![](agregacja_dobowa_m_s.png)
+<div align="center">
+<img src="agregacja_dobowa_m_s.png" />
+</div>
 
 Wykres przedstawia średnie dobowe prędkości wiatru z zewnętrznych pomiarów. Jest przydatny do oceny wpływu warunków pogodowych na instalację domową.
 
 #### Widoczność
-![](agregacja_dobowa_km.png)
+<div align="center">
+<img src="agregacja_dobowa_km.png" />
+</div>
 
 Widoczność mierzona w kilometrach obrazuje warunki atmosferyczne zewnętrzne i może być użyta do oceny jakości pomiarów oraz ich wpływu na zachowanie systemu.
 
 #### Ciśnienie atmosferyczne
-![](agregacja_dobowa_mm_Hg.png)
+<div align="center">
+<img src="agregacja_dobowa_mm_Hg.png" />
+</div>
 
 Wykres ciśnienia atmosferycznego pokazuje zmiany dobowe i jest ważny przy analizie powiązań pogodowych z zużyciem energii i temperaturą.
 
 ### Histogram zużycia energii AGD
-![](histogram_zuzycie_agd.png)
+<div align="center">
+<img src="histogram_zuzycie_agd.png" />
+</div>
 
 Histogram obrazuje rozkład dobowego zużycia energii przez urządzenia AGD. Taki wykres jest przydatny do identyfikacji wartości typowych, odchyleń oraz dni, w których zużycie było nietypowo wysokie.
 
 ### Mapa korelacji
-![](heatmap_korelacji.png)
+<div align="center">
+<img src="heatmap_korelacji.png" />
+</div>
 
 Mapa korelacji prezentuje powiązania między wszystkimi badanymi zmiennymi w formie macierzy. Dzięki polskim etykietom łatwiej wskazać silne zależności, np. między temperaturą zewnętrzną, wilgotnością i zużyciem energii.
 
